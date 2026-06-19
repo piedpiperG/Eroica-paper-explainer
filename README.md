@@ -9,7 +9,7 @@ The site focuses on the official NSDI slide deck and pairs it with:
 - Chinese dubbed presentation video generated with the local IndexTTS2 pipeline.
 - Slide-by-slide Chinese interpretation.
 - Complete English/Chinese transcript.
-- Download links for the official paper and slide PDF.
+- Download links for the official paper, slide PDF, and generated image-based PowerPoint deck.
 
 Local preview:
 

@@ -163,6 +163,13 @@ h3 {
   text-transform: uppercase;
 }
 
+.download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .download-link,
 .jump-button,
 .slide-button {
@@ -456,6 +463,10 @@ h3 {
   .video-meta {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .download-actions {
+    justify-content: flex-start;
   }
 
   .topnav {
