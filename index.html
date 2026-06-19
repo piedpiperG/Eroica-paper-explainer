@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EROICA 论文与 Slide 解读</title>
+    <meta
+      name="description"
+      content="EROICA NSDI 2026 slide-by-slide explainer with Chinese dubbed video and bilingual transcript."
+    >
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="EROICA explainer home">
+        <span class="brand-mark">E</span>
+        <span>
+          <strong>EROICA</strong>
+          <small>NSDI 2026 slide explainer</small>
+        </span>
+      </a>
+      <nav class="topnav" aria-label="Page navigation">
+        <a href="#slides">Slide 解读</a>
+        <a href="#transcript">完整讲稿</a>
+        <a href="assets/docs/eroica-nsdi26-slides.pdf">Slides PDF</a>
+        <a href="assets/docs/eroica-nsdi26-paper.pdf">Paper PDF</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="workspace">
+        <div class="video-panel">
+          <video
+            id="talkVideo"
+            controls
+            preload="metadata"
+            poster="assets/video/poster.jpg"
+          >
+            <source src="assets/video/eroica-nsdi26-zh-index-tts2.mp4" type="video/mp4">
+            当前浏览器不支持 HTML5 video。
+          </video>
+          <div class="video-meta">
+            <div>
+              <span class="eyebrow">中文配音视频</span>
+              <h1>EROICA：大规模模型训练的在线性能故障排查</h1>
+            </div>
+            <a class="download-link" href="assets/video/eroica-nsdi26-zh-index-tts2.mp4" download>下载视频</a>
+          </div>
+        </div>
+
+        <aside class="brief-panel">
+          <p class="eyebrow">讲解主线</p>
+          <h2>用 behavior fingerprint 把 profiling 变成在线诊断信号</h2>
+          <p>
+            EROICA 的核心不是「采更多数据」，而是把每个 worker 上关键函数的运行时行为压缩为
+            <strong>beta / mu / sigma</strong> 三维指纹，再进行跨 worker 比较，定位异常函数、异常机器和异常资源。
+          </p>
+          <div class="stat-grid">
+            <div><strong>100K</strong><span>生产 GPU 集群</span></div>
+            <div><strong>1.5 年</strong><span>线上部署</span></div>
+            <div><strong>97.5%</strong><span>严重问题诊断成功率</span></div>
+          </div>
+          <div class="chapter-list" id="chapterButtons" aria-label="Video chapters"></div>
+        </aside>
+      </section>
+
+      <section class="argument">
+        <div>
+          <span class="eyebrow">为什么值得讲</span>
+          <h2>论文把一个经典矛盾拆开了：监控看得广，profiling 看得深，但生产环境两者都要。</h2>
+        </div>
+        <div class="argument-grid">
+          <article>
+            <h3>问题</h3>
+            <p>大规模训练里，用户代码、数据加载、框架、通信、GPU、NIC 和远端存储都可能拖慢全局任务。</p>
+          </article>
+          <article>
+            <h3>矛盾</h3>
+            <p>在线监控低开销、全覆盖，但粗粒度；离线 profiling 细粒度，但数据量巨大，只能抽样。</p>
+          </article>
+          <article>
+            <h3>解法</h3>
+            <p>只在变慢时短时触发 profiling，把 critical path 函数行为压缩成指纹，在中心侧比较定位。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="slides" class="slides-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Slide-by-slide</span>
+            <h2>按官方 slide 逐页解读</h2>
+          </div>
+          <div class="toolbar" role="search">
+            <label class="search-box">
+              <span>搜索</span>
+              <input id="slideSearch" type="search" placeholder="behavior fingerprint / 案例 / beta">
+            </label>
+          </div>
+        </div>
+        <div id="slideList" class="slide-list"></div>
+      </section>
+
+      <section id="transcript" class="transcript-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Transcript</span>
+            <h2>完整讲稿与中文翻译</h2>
+            <p>这里保留视频里完整的英文讲稿和对应中文翻译。默认按原视频顺序展示，不做密集时间戳干扰阅读。</p>
+          </div>
+          <div class="toolbar" role="search">
+            <label class="search-box">
+              <span>搜索讲稿</span>
+              <input id="transcriptSearch" type="search" placeholder="GPU / 通信 / 指纹">
+            </label>
+          </div>
+        </div>
+        <div id="transcriptList" class="transcript-list"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Source materials:
+        <a href="https://www.usenix.org/conference/nsdi26/presentation/guan-yu">USENIX page</a>,
+        <a href="https://www.youtube.com/watch?v=UAb4-vAi0Ow">YouTube talk</a>,
+        <a href="assets/docs/eroica-nsdi26-slides.pdf">slides</a>,
+        <a href="assets/docs/eroica-nsdi26-paper.pdf">paper</a>.
+      </p>
+    </footer>
+
+    <script src="assets/data/slides.js"></script>
+    <script src="assets/data/transcript.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
